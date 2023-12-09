@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+    <acl>
+        <resources>
+            <resource id="Magento_Backend::admin">
+                <resource id="MageModuleCrafters_CustomersCart::main_menu" title="CustomersCart Main Menu" translate="title" sortOrder="100">
+                    <resource id="MageModuleCrafters_CustomersCart::view_customer_cart" title="View Customer Cart" sortOrder="10"/>
+                </resource>
+            </resource>
+        </resources>
+    </acl>
+</config>
