@@ -1,0 +1,18 @@
+<?php
+/** @var \MageModuleCrafters\CustomersCart\Block\Template $block */
+?>
+
+<div class="magento__dropdown-widget">
+    <button  data-mage-init='{"dropdown":{}}' class="action toggle" data-trigger-keypress-button="true" data-toggle="dropdown" data-action="customer-menu-toggle" aria-haspopup="true">
+    <span><?= $block->escapeHtml(__('Customer Service')) ?></span>
+    </button>
+    <ul class="dropdown-options" data-target="dropdown">
+        <li class="item"><span class="item"><?= $block->escapeHtml(__('Help Center')) ?></span></li>
+        <li class="item"><span class="item"><a href="#"><?= $block->escapeHtml(__('Check Order Status')) ?></a></span></li>
+        <li class="item"><span class="item"><?= $block->escapeHtml(__('FAQs')) ?></span></li>
+        <li class="item"><span class="item"><?= $block->escapeHtml(__('Contact us')) ?></span></li>
+        <?php if ($block->hasCart()): ?>
+            <li><span>Your Cart ID: <?php echo $block->escapeHtml($block->getCartId()); ?></span></li>
+        <?php endif; ?>
+    </ul>
+</div>

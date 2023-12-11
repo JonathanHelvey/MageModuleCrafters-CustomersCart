@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+   <head>
+       <css src="MageModuleCrafters_CustomersCart::css/customer-service.css"/>
+  </head>
+    <body>
+        <referenceContainer name="header.panel">
+            <block class="MageModuleCrafters\CustomersCart\Block\CustomerService" name="customer_service" template="MageModuleCrafters_CustomersCart::html/customer_service.phtml"/>
+        </referenceContainer>
+    </body>
+</page>

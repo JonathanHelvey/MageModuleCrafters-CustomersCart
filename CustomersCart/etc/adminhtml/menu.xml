@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
     <menu>
-        <add id="MageModuleCrafters_CustomersCart::view_customer_cart" title="View Customer Cart" module="MageModuleCrafters_CustomersCart" sortOrder="10" parent="Magento_Customer::customer" action="customerscart/cart/view"/>
+        <add id="MageModuleCrafters_CustomersCart::view_customer_cart" title="View Customer Cart" module="MageModuleCrafters_CustomersCart" sortOrder="10" parent="Magento_Customer::customer" action="customerscart/cart/view" resource="MageModuleCrafters_CustomersCart::view_customer_cart"/>
     </menu>
 </config>
