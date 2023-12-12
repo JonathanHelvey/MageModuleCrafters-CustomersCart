@@ -1,0 +1,21 @@
+<?php
+// Retrieve cart data set in the controller
+$cartData = $block->getData('cartData');
+?>
+
+<h2>Cart Details:</h2>
+<?php if (!empty($cartData) && !empty($cartData['items'])) : ?>
+    <p><strong>Cart Total:</strong> <?= $block->escapeHtml($cartData['total']) ?></p>
+    <h3>Cart Items:</h3>
+    <ul>
+    <?php foreach ($cartData['items'] as $item) : ?>
+        <li>
+            <strong><?= $block->escapeHtml($item['name']) ?></strong><br>
+            SKU: <?= $block->escapeHtml($item['sku']) ?><br>
+            <!-- Add other item details as needed -->
+        </li>
+    <?php endforeach; ?>
+    </ul>
+<?php else : ?>
+    <p>No items in the cart.</p>
+<?php endif; ?>

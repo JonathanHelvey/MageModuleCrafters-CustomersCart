@@ -1,0 +1,21 @@
+<?php
+/** @var \MageModuleCrafters\CustomersCart\Block\CustomerService $block */
+?>
+
+<div class="admin-form">
+    <form action="<?php echo $block->getUrl('customerscart/cart/submit'); ?>" method="post">
+        <?= $block->getBlockHtml('formkey'); ?>
+        
+        <div class="admin__field">
+            <label for="cart_id" class="admin__field-label"><?= __('Cart ID') ?></label>
+            <div class="admin__field-control">
+                <input id="cart_id" name="cart_id" type="text" class="admin__control-text" value="<?= $block->getCartId(); ?>"/>
+            </div>
+        </div>
+        <div class="actions">
+            <button type="submit" class="action-primary">
+                <span><?= __('View Cart') ?></span>
+            </button>
+        </div>
+    </form>
+</div>
