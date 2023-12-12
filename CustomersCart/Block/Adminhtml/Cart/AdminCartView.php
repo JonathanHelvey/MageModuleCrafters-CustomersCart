@@ -1,10 +1,10 @@
 <?php
-namespace MageModuleCrafters\CustomersCart\Block\Adminhtml\AdminCartView;
+namespace MageModuleCrafters\CustomersCart\Block\Adminhtml\Cart;
 
 use Magento\Framework\View\Element\Template;
 use Magento\Framework\View\Element\Template\Context;
 
-class Submit extends Template
+class AdminCartView extends Template
 {
     protected $data = [];
 

@@ -50,15 +50,20 @@ class Submit extends \Magento\Backend\App\Action
             $this->logger->info("Admin Cart Submit: Cart data prepared.", ['cartData' => $cartData]);
 
             $block = $this->_view->getLayout()->getBlock('customerscart_cart_submit');
+
             if ($block) {
+                $this->logger->info("Admin Cart Submit: Block 'customerscart_cart_submit' found.");
                 $block->setData('cartData', $cartData);
-                $this->logger->info("Admin Cart Submit: Cart data set to block.");
+                $this->logger->info("Admin Cart Submit: Cart data set to block.", ['cartData' => $cartData]);
             } else {
                 $this->logger->error("Admin Cart Submit: Block 'customerscart_cart_submit' not found.");
             }
         } catch (\Magento\Framework\Exception\NoSuchEntityException $e) {
             $this->messageManager->addError(__('Cart not found.'));
             $this->logger->error('Admin Cart Submit: Error loading cart.', ['exception' => $e->getMessage()]);
+        } catch (\Exception $e) {
+            // Catch any other exceptions that might occur
+            $this->logger->critical('Admin Cart Submit: An unexpected error occurred.', ['exception' => $e->getMessage()]);
         }
 
         $resultPage = $this->resultPageFactory->create();
