@@ -5,6 +5,7 @@ use Magento\Backend\App\Action\Context;
 use Magento\Framework\View\Result\PageFactory;
 use Magento\Quote\Api\CartRepositoryInterface;
 use Psr\Log\LoggerInterface;
+use Magento\Framework\Registry;
 
 class Submit extends \Magento\Backend\App\Action
 {
@@ -13,17 +14,20 @@ class Submit extends \Magento\Backend\App\Action
     protected $resultPageFactory;
     protected $cartRepository;
     protected $logger;
+    protected $coreRegistry; // Add this line
 
     public function __construct(
         Context $context,
         PageFactory $resultPageFactory,
         CartRepositoryInterface $cartRepository,
-        LoggerInterface $logger
+        LoggerInterface $logger,
+        Registry $coreRegistry // Add this line
     ) {
         parent::__construct($context);
         $this->resultPageFactory = $resultPageFactory;
         $this->cartRepository = $cartRepository;
         $this->logger = $logger;
+        $this->coreRegistry = $coreRegistry; // Add this line
     }
 
     public function execute()
@@ -49,15 +53,9 @@ class Submit extends \Magento\Backend\App\Action
 
             $this->logger->info("Admin Cart Submit: Cart data prepared.", ['cartData' => $cartData]);
 
-            $block = $this->_view->getLayout()->getBlock('customerscart_cart_submit');
+            // Register cart data in Magento registry
+            $this->coreRegistry->register('cartData', $cartData);
 
-            if ($block) {
-                $this->logger->info("Admin Cart Submit: Block 'customerscart_cart_submit' found.");
-                $block->setData('cartData', $cartData);
-                $this->logger->info("Admin Cart Submit: Cart data set to block.", ['cartData' => $cartData]);
-            } else {
-                $this->logger->error("Admin Cart Submit: Block 'customerscart_cart_submit' not found.");
-            }
         } catch (\Magento\Framework\Exception\NoSuchEntityException $e) {
             $this->messageManager->addError(__('Cart not found.'));
             $this->logger->error('Admin Cart Submit: Error loading cart.', ['exception' => $e->getMessage()]);

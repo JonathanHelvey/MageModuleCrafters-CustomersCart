@@ -2,30 +2,35 @@
 namespace MageModuleCrafters\CustomersCart\Block\Adminhtml\Cart;
 
 use Magento\Framework\View\Element\Template;
+use Magento\Framework\Registry;
 
 class AdminCartSubmit extends Template
 {
-    protected $cartData = [];
+    protected $_coreRegistry;
 
     /**
-     * Set cart data.
+     * Constructor
      *
-     * @param array $cartData
+     * @param \Magento\Backend\Block\Template\Context $context
+     * @param \Magento\Framework\Registry $coreRegistry
+     * @param array $data
      */
-    public function setCartData(array $cartData)
-    {
-        $this->cartData = $cartData;
+    public function __construct(
+        \Magento\Backend\Block\Template\Context $context,
+        Registry $coreRegistry,
+        array $data = []
+    ) {
+        parent::__construct($context, $data);
+        $this->_coreRegistry = $coreRegistry;
     }
 
     /**
-     * Get cart data.
+     * Get cart data from the registry.
      *
-     * @return array
+     * @return array|null
      */
     public function getCartData()
     {
-        return $this->cartData;
+        return $this->_coreRegistry->registry('cartData');
     }
-
-
 }
