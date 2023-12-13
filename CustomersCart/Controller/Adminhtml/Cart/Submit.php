@@ -14,20 +14,20 @@ class Submit extends \Magento\Backend\App\Action
     protected $resultPageFactory;
     protected $cartRepository;
     protected $logger;
-    protected $coreRegistry; // Add this line
+    protected $coreRegistry; 
 
     public function __construct(
         Context $context,
         PageFactory $resultPageFactory,
         CartRepositoryInterface $cartRepository,
         LoggerInterface $logger,
-        Registry $coreRegistry // Add this line
+        Registry $coreRegistry
     ) {
         parent::__construct($context);
         $this->resultPageFactory = $resultPageFactory;
         $this->cartRepository = $cartRepository;
         $this->logger = $logger;
-        $this->coreRegistry = $coreRegistry; // Add this line
+        $this->coreRegistry = $coreRegistry;
     }
 
     public function execute()

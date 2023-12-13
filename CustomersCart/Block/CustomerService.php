@@ -12,11 +12,12 @@ class CustomerService extends Template
      * @var CheckoutSession
      */
     protected $checkoutSession;
-
     /**
      * @var LoggerInterface
      */
     protected $logger;
+    
+    protected $cartIdMappingHelper;
 
     /**
      * Constructor
@@ -30,10 +31,12 @@ class CustomerService extends Template
         Context $context,
         CheckoutSession $checkoutSession,
         LoggerInterface $logger,
+        \MageModuleCrafters\CustomersCart\Helper\CartIdMapping $cartIdMappingHelper,
         array $data = []
     ) {
         parent::__construct($context, $data);
         $this->checkoutSession = $checkoutSession;
+        $this->cartIdMappingHelper = $cartIdMappingHelper;
         $this->logger = $logger;
     }
 
@@ -56,7 +59,7 @@ class CustomerService extends Template
     {
         $quoteId = $this->checkoutSession->getQuoteId();
         if ($quoteId !== null) {
-
+            $this->cartIdMappingHelper->saveCartIdMapping($quoteId);
             return md5($quoteId);
         }
     }
